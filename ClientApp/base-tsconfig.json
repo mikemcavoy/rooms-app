@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@emotion/core": ["./typings/index.d.ts"]
+    }
+  }
+}
