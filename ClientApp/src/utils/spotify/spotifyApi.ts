@@ -126,7 +126,7 @@ export const spotifyApi = {
       const transformedUserObj: User = {
         userId: res.data.id,
         name: res.data.display_name,
-        profileImage: res.data.images[0].url,
+        profileImage: res.data.images[0]?.url,
       };
       return transformedUserObj;
     } catch (error) {

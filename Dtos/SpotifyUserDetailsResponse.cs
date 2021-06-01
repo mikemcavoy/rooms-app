@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace api.Dtos
@@ -23,7 +24,7 @@ namespace api.Dtos
             Name = display_name;
             Email = email;
             ProfileUrl = external_urls.spotify;
-            ProfileImage = images[0].url;
+            ProfileImage = images.FirstOrDefault().url;
         }
 
     }
