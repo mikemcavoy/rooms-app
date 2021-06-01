@@ -1,3 +1,5 @@
 build:
   docker:
     web: Dockerfile
+  config:
+    REACT_APP_SERVER_URL: https://rooms-application.herokuapp.com
