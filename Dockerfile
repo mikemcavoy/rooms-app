@@ -1,5 +1,6 @@
 # https://hub.docker.com/_/microsoft-dotnet
 FROM mcr.microsoft.com/dotnet/sdk:5.0.103 AS build
+ARG REACT_APP_SERVER_URL
 WORKDIR /build
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x |  bash -
