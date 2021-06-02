@@ -3,7 +3,7 @@ import { QueueItem } from 'src/context/room/room.types';
 import { RoutePaths } from '../routes';
 
 const apiRequest = () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('at');
   const serverBaseUrl = `${process.env.REACT_APP_SERVER_URL}`;
 
   const axiosInstance = axios.create({
