@@ -39,8 +39,8 @@ namespace api.Controllers
 
             var queryParams = new Dictionary<string, string>()
             {
-                {"accessToken", tokenObj.AccessToken },
-                {"spotifyAccessToken", tokenObj.SpotifyAccessToken },
+                {"at", tokenObj.AccessToken },
+                {"sat", tokenObj.SpotifyAccessToken },
             };
 
             var baseUrl = "/login";
@@ -54,7 +54,7 @@ namespace api.Controllers
         [HttpGet("refresh-tokens")]
         public async Task<IActionResult> RefreshToken()
         {
-            var refreshToken = Request.Cookies["refreshToken"];
+            var refreshToken = Request.Cookies["rft"];
             if (refreshToken is null)
             {
                 throw new InvalidTokenException("Refresh token does not exist");
@@ -66,7 +66,7 @@ namespace api.Controllers
         [HttpGet("logout")]
         public IActionResult Logout()
         {
-            var refreshToken = Request.Cookies["refreshToken"];
+            var refreshToken = Request.Cookies["rft"];
             _authenticationService.RemoveRefreshTokenInCookie(HttpContext);
             return Ok();
         }

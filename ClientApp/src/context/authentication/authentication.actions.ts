@@ -24,8 +24,8 @@ export const logoutUser = async (dispatch: AuthenticationDispatch) => {
   try {
     dispatch({ type: AuthenticationActionTypes.LOGOUT_ATTEMPT });
     await api.logoutUser();
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('spotifyAccessToken');
+    localStorage.removeItem('at');
+    localStorage.removeItem('sat');
     dispatch({ type: AuthenticationActionTypes.LOGOUT_SUCCESS });
   } catch (error) {
     dispatch({ type: AuthenticationActionTypes.LOGOUT_ERROR });

@@ -28,11 +28,8 @@ const apiRequest = () => {
             { withCredentials: true },
           );
           if (refreshRes.status === 200) {
-            localStorage.setItem('accessToken', refreshRes.data.accessToken);
-            localStorage.setItem(
-              'spotifyAccessToken',
-              refreshRes.data.spotifyAccessToken,
-            );
+            localStorage.setItem('at', refreshRes.data.accessToken);
+            localStorage.setItem('sat', refreshRes.data.spotifyAccessToken);
             originalRequest.headers.Authorization = `Bearer ${refreshRes.data.accessToken}`;
             return axiosInstance(originalRequest);
           }
@@ -56,8 +53,8 @@ export const api = {
   logoutUser: async (): Promise<AxiosResponse<any>> => {
     return apiRequest().get('api/auth/logout');
   },
-  getRefreshSpotifyAccessToken: async (): Promise<AxiosResponse<any>> => {
-    return apiRequest().get('/api/auth/refresh-spotify-token');
+  refreshAccessTokens: async (): Promise<AxiosResponse<any>> => {
+    return apiRequest().get('/api/auth/refresh-tokens');
   },
   postTrackToQueue: async (queueItemData: QueueItem) => {
     return apiRequest().post('/api/room/queue', queueItemData);

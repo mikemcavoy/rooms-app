@@ -15,7 +15,7 @@ export const PlayerContainer: React.FC = () => {
   const { currentlyPlaying } = useRoomState();
   const dispatch = useRoomDispatch();
   let webPlayer: WebPlayer;
-  let accessToken = localStorage.getItem('spotifyAccessToken');
+  let accessToken = localStorage.getItem('sat');
   const [deviceReady, setDeviceReady] = useState<boolean>(false);
   const [deviceId, setDeviceId] = useState<string | null>(null);
   const [paused, setPaused] = useState<boolean>(true);
@@ -101,9 +101,10 @@ export const PlayerContainer: React.FC = () => {
       console.error(message);
     });
     webPlayer.addListener('authentication_error', async () => {
-      const res = await api.getRefreshSpotifyAccessToken();
-      localStorage.setItem('spotifyAccessToken', res.data.accessToken);
-      accessToken = res.data.accessToken;
+      const res = await api.refreshAccessTokens();
+      localStorage.setItem('at', res.data.accessToken);
+      localStorage.setItem('sat', res.data.spotifyAccessToken);
+      accessToken = res.data.spotifyAccessToken;
     });
     webPlayer.addListener('account_error', ({ message }) => {
       console.error(message);

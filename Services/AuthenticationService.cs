@@ -68,7 +68,7 @@ namespace api.Services
 
         public void RemoveRefreshTokenInCookie(HttpContext context)
         {
-            context.Response.Cookies.Delete("refreshToken");
+            context.Response.Cookies.Delete("rft");
         }
 
         private string GenerateJwtToken(string userId)

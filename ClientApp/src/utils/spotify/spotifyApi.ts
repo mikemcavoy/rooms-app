@@ -5,7 +5,7 @@ import { api } from '../api';
 import { Album, Artist, Track } from './spotifyApi.types';
 
 const spotifyRequest = () => {
-  const spotifyAccessToken = localStorage.getItem('spotifyAccessToken');
+  const spotifyAccessToken = localStorage.getItem('sat');
   const serverBaseUrl = `${process.env.REACT_APP_SERVER_URL}`;
 
   const axiosInstance = axios.create({
@@ -29,11 +29,8 @@ const spotifyRequest = () => {
             { withCredentials: true },
           );
           if (refreshRes.status === 200) {
-            localStorage.setItem('accessToken', refreshRes.data.accessToken);
-            localStorage.setItem(
-              'spotifyAccessToken',
-              refreshRes.data.spotifyAccessToken,
-            );
+            localStorage.setItem('at', refreshRes.data.accessToken);
+            localStorage.setItem('sat', refreshRes.data.spotifyAccessToken);
             originalRequest.headers.Authorization = `Bearer ${refreshRes.data.accessToken}`;
             return axiosInstance(originalRequest);
           }

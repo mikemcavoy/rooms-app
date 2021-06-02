@@ -24,14 +24,11 @@ export const AuthenticationProvider: React.FC = ({ children }) => {
   const search = useLocation().search;
 
   useEffect(() => {
-    const accessToken = new URLSearchParams(search).get('accessToken');
-    const spotifyAccessToken = new URLSearchParams(search).get(
-      'spotifyAccessToken',
-    );
+    const accessToken = new URLSearchParams(search).get('sa');
+    const spotifyAccessToken = new URLSearchParams(search).get('sat');
 
-    accessToken && localStorage.setItem('accessToken', accessToken);
-    spotifyAccessToken &&
-      localStorage.setItem('spotifyAccessToken', spotifyAccessToken);
+    accessToken && localStorage.setItem('at', accessToken);
+    spotifyAccessToken && localStorage.setItem('sat', spotifyAccessToken);
 
     getCurrentUser(dispatch);
   }, []);
