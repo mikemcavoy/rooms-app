@@ -24,7 +24,7 @@ export const AuthenticationProvider: React.FC = ({ children }) => {
   const search = useLocation().search;
 
   useEffect(() => {
-    const accessToken = new URLSearchParams(search).get('sa');
+    const accessToken = new URLSearchParams(search).get('at');
     const spotifyAccessToken = new URLSearchParams(search).get('sat');
 
     accessToken && localStorage.setItem('at', accessToken);

@@ -63,7 +63,7 @@ namespace api.Services
                 Expires = DateTime.UtcNow.AddDays(REFRESH_TOKEN_EXPIRES_IN_DAYS),
             };
 
-            context.Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
+            context.Response.Cookies.Append("rft", refreshToken, cookieOptions);
         }
 
         public void RemoveRefreshTokenInCookie(HttpContext context)
