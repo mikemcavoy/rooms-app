@@ -39,7 +39,7 @@ namespace api.Services
                 {"client_id", ClientId},
                 {"response_type", "code"},
                 {"redirect_uri", RedirectUrl},
-                {"scope", "streaming"},
+                {"scope", "streaming user-read-email user-read-private"},
             };
             return QueryHelpers.AddQueryString(AuthorizationUrl, queryParams);
         }
