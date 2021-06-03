@@ -16,7 +16,7 @@ namespace api.Services
         private readonly IConfiguration _config;
         private readonly ISpotifyService _spotifyService;
 
-        private const int REFRESH_TOKEN_EXPIRES_IN_DAYS = 5;
+        private const int REFRESH_TOKEN_EXPIRES_IN_DAYS = 1;
 
         public AuthenticationService(IConfiguration config,
                                      ISpotifyService spotifyService)
