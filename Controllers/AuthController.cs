@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Exceptions;
 using api.Services;
+using api.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,19 @@ namespace api.Controllers
         {
             string url = _spotifyService.StartAuthorization();
             return Redirect(url);
+        }
+
+        [HttpPost("confirm-login")]
+        public async Task<IActionResult> ConfirmLogin([FromBody] LoginCodeInput codeInput)
+        {
+            if(string.IsNullOrEmpty(codeInput.code)){
+                return BadRequest("Invalid code");
+            }
+            var tokenObj = await _authenticationService.AuthenticateAsync(codeInput.code);
+
+            _authenticationService.SetRefreshTokenInCookie(HttpContext, tokenObj.RefreshToken);
+
+            return Ok(tokenObj);
         }
 
         [HttpGet("login-callback")]

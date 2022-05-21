@@ -50,6 +50,9 @@ const apiRequest = () => {
 };
 
 export const api = {
+  confirmLogin: async (code: string): Promise<AxiosResponse<any>> => {
+    return (await apiRequest().post('api/auth/confirm-login', {code: code}));
+  },
   logoutUser: async (): Promise<AxiosResponse<any>> => {
     return apiRequest().get('api/auth/logout');
   },

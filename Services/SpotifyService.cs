@@ -27,7 +27,7 @@ namespace api.Services
             _config = config;
             _httpClientFactory = httpClientFactory;
 
-            RedirectUrl = _config.GetSection("Application").GetSection("BaseUrl").Value + "/api/auth/login-callback";
+            RedirectUrl = _config.GetSection("Application").GetSection("BaseUrl").Value + "/authenticating";
             ClientId = _config.GetSection("Spotify").GetSection("ClientId").Value;
             ClientSecret = _config.GetSection("Spotify").GetSection("ClientSecret").Value;
         }

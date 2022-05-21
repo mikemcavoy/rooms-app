@@ -9,7 +9,7 @@ import { Box } from '../../components/core/Box';
 import { useLocation } from 'react-router';
 
 const initialState: AuthenticationState = {
-  isLoading: true,
+  isLoading: false,
   isAuthenticated: false,
   currentUser: null,
 };
@@ -21,16 +21,12 @@ const AuthenicationDispatchContext =
 
 export const AuthenticationProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(authenticationReducer, initialState);
-  const search = useLocation().search;
 
   useEffect(() => {
-    const accessToken = new URLSearchParams(search).get('at');
-    const spotifyAccessToken = new URLSearchParams(search).get('sat');
+    const accessToken = localStorage.getItem('at');
+    const spotifyAccessToken = localStorage.getItem('sat');
 
-    accessToken && localStorage.setItem('at', accessToken);
-    spotifyAccessToken && localStorage.setItem('sat', spotifyAccessToken);
-
-    getCurrentUser(dispatch);
+    accessToken && spotifyAccessToken && getCurrentUser(dispatch);
   }, []);
 
   return (
